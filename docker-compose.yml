@@ -1,0 +1,22 @@
+version: "3"
+services:
+  syno-debian:
+#    image: gpopesc/xfce-debian-synology
+    container_name: syno-debian
+    build: .
+    environment:
+      - VNCPASS=admin
+      - DISPLAY_WIDTH=1200
+      - DISPLAY_HEIGHT=720
+      - TZ=Europe/Bucharest
+    ports:
+      - 5905:5900   #vnc port
+      - 8087:8080   #http port
+    volumes:
+      - ./data:/root/Downloads
+#      - ./data/root:/root #map root if you want to save all your seetings 
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+         size: 4000000000 # ~4gb
+    restart: unless-stopped
