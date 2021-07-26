@@ -34,8 +34,6 @@ if [ -n "${USER_NAME}" ]
   #echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S chown ${USER_NAME}:0 /home/${USER_NAME}/capslock_toggle.sh
   echo "cd /home/${USER_NAME}" >> ~/.bashrc
   sudo -u ${USER_NAME} startxfce4 & \
-  sudo -u ${USER_NAME} crontab -l ; \
-  sudo -u ${USER_NAME} echo "* * * * * /usr/bin/mousepad" | crontab && \
   cron -f &
   #killall plank && sleep 10 && sudo -u ${USER_NAME} plank &
   #echo "===========> before sleep <============" && sleep 60 && \
@@ -46,6 +44,7 @@ if [ -n "${USER_NAME}" ]
   mkdir -p /root/.config/xfce4/xfconf/xfce-perchannel-xml
   cp /tmp/*.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
   nohup startxfce4 &>/dev/null & \
+  cron -f &
   #killall plank && sleep 10 && plank &
   #allow bash script running from thunar
   #echo "===========> before sleep <============" && sleep 60 && \

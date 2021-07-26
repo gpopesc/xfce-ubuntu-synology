@@ -130,9 +130,9 @@ WORKDIR /root/
 HEALTHCHECK --interval=1m --timeout=10s CMD curl --fail http://127.0.0.1:8080/vnc.html
 
 
-# Create the log file to be able to run tail
-#RUN touch /var/log/cron.log 
-#RUN (crontab -l ; echo "* * * * * echo "Hello world" >> /var/log/cron.log") | crontab
+# Cron job
+RUN touch /tmp/cron.log 
+RUN (crontab -l; echo "0 * * * * apt update && sleep 10 && apt upgrade -y && sleep 10 && apt autoclean >> /tmp/cron.log") | crontab
 
 #config files to temp location
 COPY ./config/*.xml /tmp/
