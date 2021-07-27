@@ -133,6 +133,7 @@ HEALTHCHECK --interval=1m --timeout=10s CMD curl --fail http://127.0.0.1:8080/vn
 RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 && apt upgrade -y && sleep 10 && apt autoclean >> /tmp/cron.log") | crontab
 
 #config files to temp location
+RUN mkdir /opt/.vnc && mkdir /tmp
 COPY ./config/*.xml /tmp/ && ./config/capslock_toggle.sh /root/capslock_toggle.sh && \
      ./config/index.html /opt/noVNC/index.html && startup.sh /tmp/ && supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN ["chmod", "+x", "/root/capslock_toggle.sh"]
