@@ -137,6 +137,6 @@ RUN mkdir /opt/.vnc
 COPY ./config/*.xml startup.sh ./config/capslock_toggle.sh /tmp/
 COPY ./config/index.html /opt/noVNC/index.html
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN ["chmod", "+x", "/root/capslock_toggle.sh"]
+RUN ["chmod", "+x", "/tmp/capslock_toggle.sh"]
 RUN mkdir /opt/.vnc
 CMD ["/usr/bin/supervisord"]
