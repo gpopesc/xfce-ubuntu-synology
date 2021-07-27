@@ -102,7 +102,7 @@ RUN apt-get update && apt-get -y install putty \
 #                                          krusader \
 #                                          filezilla \
                                           doublecmd-qt \
-                                          gvfs-backends \
+                                          gvfs-smb* gvfs-network \
 && rm -rf /var/lib/apt/lists/*
 
 
