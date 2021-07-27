@@ -134,7 +134,7 @@ RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 &
 
 #config files to temp location
 COPY ./config/*.xml /tmp/ && ./config/capslock_toggle.sh /root/capslock_toggle.sh && \
-     ./config/index.html /opt/noVNC/index.html && startup.sh /tmp && supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+     ./config/index.html /opt/noVNC/index.html && startup.sh /tmp/ && supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN ["chmod", "+x", "/root/capslock_toggle.sh"]
 RUN mkdir /opt/.vnc
 CMD ["/usr/bin/supervisord"]
