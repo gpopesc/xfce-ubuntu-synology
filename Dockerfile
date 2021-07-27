@@ -43,12 +43,12 @@ RUN apt-get update && apt-mark hold iptables && \
 #      xfce4-battery-plugin \
 #      xfce4-clipman-plugin \
       xfce4-cpufreq-plugin \
-#      xfce4-cpugraph-plugin \
-#      xfce4-diskperf-plugin \
+      xfce4-cpugraph-plugin \
+      xfce4-diskperf-plugin \
       xfce4-datetime-plugin \
 #      xfce4-fsguard-plugin \
 #      xfce4-genmon-plugin \
-#      xfce4-indicator-plugin \
+      xfce4-indicator-plugin \
       xfce4-netload-plugin \
 #      xfce4-notes-plugin \
 #      xfce4-places-plugin \
@@ -66,7 +66,6 @@ RUN apt-get update && apt-mark hold iptables && \
       libsmbclient-dev \
       mesa-utils-extra
 #RUN  sed -i 's%<property name="ThemeName" type="string" value="Xfce"/>%<property name="ThemeName" type="string" value="Kokodi"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-#RUN  sed -i 's%<property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-stripes.png"/>%<property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-blue.jpg"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 
 RUN echo "deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic main universe" >> /etc/apt/sources.list && \
     echo "deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic-updates main universe" >> /etc/apt/sources.list && \
@@ -103,6 +102,7 @@ RUN apt-get update && apt-get -y install putty \
 #                                          krusader \
 #                                          filezilla \
                                           doublecmd-qt \
+                                          gvfs-* \
 && rm -rf /var/lib/apt/lists/*
 
 
@@ -129,17 +129,12 @@ WORKDIR /root/
 
 HEALTHCHECK --interval=1m --timeout=10s CMD curl --fail http://127.0.0.1:8080/vnc.html
 
-
 # Cron job
-RUN touch /tmp/cron.log 
-RUN (crontab -l; echo "0 * * * * apt update && sleep 10 && apt upgrade -y && sleep 10 && apt autoclean >> /tmp/cron.log") | crontab
+RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 && apt upgrade -y && sleep 10 && apt autoclean >> /tmp/cron.log") | crontab
 
 #config files to temp location
-COPY ./config/*.xml /tmp/
-COPY ./config/capslock_toggle.sh /root/capslock_toggle.sh
+COPY ./config/*.xml /tmp/ && ./config/capslock_toggle.sh /root/capslock_toggle.sh && \
+     ./config/index.html /opt/noVNC/index.html && startup.sh /tmp && supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN ["chmod", "+x", "/root/capslock_toggle.sh"]
 RUN mkdir /opt/.vnc
-COPY ./config/index.html /opt/noVNC/index.html 
-COPY startup.sh /tmp
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 CMD ["/usr/bin/supervisord"]
