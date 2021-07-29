@@ -44,11 +44,7 @@ RUN apt-get update && apt-mark hold iptables && \
 #      xfce4-clipman-plugin \
       xfce4-cpufreq-plugin \
       xfce4-cpugraph-plugin \
-<<<<<<< HEAD
 #      xfce4-diskperf-plugin \
-=======
-      xfce4-diskperf-plugin \
->>>>>>> 3f30b96981d6eb9799f77d46f25b0df60140dedd
       xfce4-datetime-plugin \
 #      xfce4-fsguard-plugin \
 #      xfce4-genmon-plugin \
@@ -105,12 +101,7 @@ RUN apt-get update && apt-get -y install putty \
 #                                         firefox \
 #                                          krusader \
 #                                          filezilla \
-<<<<<<< HEAD
 #                                          doublecmd-qt \
-=======
-                                          doublecmd-qt \
-                                          samba* \
->>>>>>> 3f30b96981d6eb9799f77d46f25b0df60140dedd
 && rm -rf /var/lib/apt/lists/*
 
 
