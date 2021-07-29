@@ -1,6 +1,5 @@
 #!/bin/bash
-LOG_LOCATION=/tmp/
-exec >> $LOG_LOCATION/mylogfile.log 2>&1
+exec >> /tmp/startup.log 2>&1
 
 echo 'deb http://download.opensuse.org/repositories/home:/Alexx2000/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/home:Alexx2000.list
 curl -fsSL https://download.opensuse.org/repositories/home:Alexx2000/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Alexx2000.gpg > /dev/null
@@ -17,7 +16,6 @@ if [ -e "/usr/share/applications/google-chrome.desktop" ]
 fi
 
 mkdir /tmp/.ICE-unix && chmod 1777 /tmp/.ICE-unix
-echo "root pass"
 echo root:${VNCPASS} | sudo chpasswd
 #chmod 777 /usr/share/plank/themes/Default/dock.theme
 
@@ -30,24 +28,21 @@ if [ -n "${USER_NAME}" ]
   export HOME=/home/${USER_NAME}
   echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S mkdir -p /home/${USER_NAME}/.config/xfce4/xfconf/xfce-perchannel-xml
   echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S cp /tmp/*.xml /home/${USER_NAME}/.config/xfce4/xfconf/xfce-perchannel-xml/
-  cp /root/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 777 /home/${USER_NAME}/capslock_toggle.sh
-  #echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S chown ${USER_NAME}:0 /home/${USER_NAME}/capslock_toggle.sh
+  cp /tmp/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 777 /home/${USER_NAME}/capslock_toggle.sh
   echo "cd /home/${USER_NAME}" >> ~/.bashrc
   sudo -u ${USER_NAME} startxfce4 & \
-  cron -f &
   #killall plank && sleep 10 && sudo -u ${USER_NAME} plank &
-  #echo "===========> before sleep <============" && sleep 60 && \
   #echo ${USER_PASSWORD} | sudo -u ${USER_NAME} xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
-  #echo "===========> script finnished <============"
+  echo "===========> script finnished <============"
  else
   echo "Running as root"
   mkdir -p /root/.config/xfce4/xfconf/xfce-perchannel-xml
   cp /tmp/*.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
-  nohup startxfce4 &>/dev/null & \
-  cron -f &
+  cp /tmp/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 700 /home/${USER_NAME}/capslock_toggle.sh
+  startxfce4 & \
   #killall plank && sleep 10 && plank &
-  #allow bash script running from thunar
-  #echo "===========> before sleep <============" && sleep 60 && \
   #xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
-  #echo "===========> script finnished <============"
+  echo "===========> script finnished <============"
 fi
+rm -f /tmp/*.xml
+echo "===========> Done <============"
