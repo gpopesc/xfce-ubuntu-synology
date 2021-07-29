@@ -32,7 +32,7 @@ RUN apt-get update && apt-mark hold iptables && \
       xfce4 && \
     apt-get install -y --no-install-recommends \
       libgtk-3-bin \
-      libpulse0 \
+#      libpulse0 \
       mousepad \
       xfce4-notifyd \
       xfce4-taskmanager \
@@ -43,7 +43,7 @@ RUN apt-get update && apt-mark hold iptables && \
 #      xfce4-battery-plugin \
 #      xfce4-clipman-plugin \
       xfce4-cpufreq-plugin \
-#      xfce4-cpugraph-plugin \
+      xfce4-cpugraph-plugin \
 #      xfce4-diskperf-plugin \
       xfce4-datetime-plugin \
 #      xfce4-fsguard-plugin \
@@ -77,7 +77,7 @@ RUN apt-get update && apt-get -y install git \
       wget \
       curl \
       net-tools \
-      gnupg2 \
+#      gnupg2 \
       python3 \
       x11vnc \
       xvfb \
@@ -89,9 +89,9 @@ RUN apt-get update && apt-get -y install git \
       tango-icon-theme \
       cron \
 #      plank \
-      pulseaudio \
-      pulseaudio-dlna \
-      pavucontrol \
+#      pulseaudio \
+#      pulseaudio-dlna \
+#      pavucontrol \
    && rm -rf /var/lib/apt/lists/*
 
 #optional apps, comment if you don't need
@@ -102,7 +102,7 @@ RUN apt-get update && apt-get -y install putty \
 #                                         firefox \
 #                                          krusader \
 #                                          filezilla \
-                                          doublecmd-qt \
+#                                          doublecmd-qt \
 && rm -rf /var/lib/apt/lists/*
 
 
@@ -117,11 +117,11 @@ RUN echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbun
 
 
 #install lightweight browser - Palemoon
-RUN apt-get update && apt-get -y install palemoon
-RUN wget -q -P /tmp  https://download.anydesk.com/linux/deb/anydesk_6.0.1-1_amd64.deb \
-    && wget -q -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN apt-get install -y /tmp/*.deb
-RUN rm -f /tmp/*.deb
+#RUN apt-get update && apt-get -y install palemoon
+#RUN wget -q -P /tmp  https://download.anydesk.com/linux/deb/anydesk_6.0.1-1_amd64.deb \
+#    && wget -q -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#RUN apt-get install -y /tmp/*.deb
+#RUN rm -f /tmp/*.deb
 
 EXPOSE 5900 8080
 
