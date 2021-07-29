@@ -26,21 +26,21 @@ if [ -n "${USER_NAME}" ]
   useradd -m -p $(openssl passwd -1 ${USER_PASSWORD}) -s /bin/bash -G sudo ${USER_NAME}
   sudo usermod -a -G root ${USER_NAME}
   export HOME=/home/${USER_NAME}
+  echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S mkdir -p /home/${USER_NAME}/share
   echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S mkdir -p /home/${USER_NAME}/.config/xfce4/xfconf/xfce-perchannel-xml
   echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S cp /tmp/*.xml /home/${USER_NAME}/.config/xfce4/xfconf/xfce-perchannel-xml/
   cp /tmp/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 777 /home/${USER_NAME}/capslock_toggle.sh
   echo "cd /home/${USER_NAME}" >> ~/.bashrc
   sudo -u ${USER_NAME} startxfce4 & \
-  #killall plank && sleep 10 && sudo -u ${USER_NAME} plank &
   #echo ${USER_PASSWORD} | sudo -u ${USER_NAME} xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
   echo "===========> script finnished <============"
  else
   echo "Running as root"
+  mkdir -p /root/share
   mkdir -p /root/.config/xfce4/xfconf/xfce-perchannel-xml
   cp /tmp/*.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
   cp /tmp/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 700 /home/${USER_NAME}/capslock_toggle.sh
   startxfce4 & \
-  #killall plank && sleep 10 && plank &
   #xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
   echo "===========> script finnished <============"
 fi

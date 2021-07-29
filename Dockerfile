@@ -32,14 +32,12 @@ RUN apt-get update && apt-mark hold iptables && \
       xfce4 && \
     apt-get install -y --no-install-recommends \
       libgtk-3-bin \
-#      libpulse0 \
       mousepad \
       xfce4-notifyd \
       xfce4-taskmanager \
       xfce4-terminal && \
     apt-get install -y --no-install-recommends \
       xfwm4 \
- #     xfwm4-theme-breeze \
 #      xfce4-battery-plugin \
 #      xfce4-clipman-plugin \
       xfce4-cpufreq-plugin \
@@ -61,10 +59,11 @@ RUN apt-get update && apt-mark hold iptables && \
       xfce4-whiskermenu-plugin && \
       apt-get install -y --no-install-recommends \
       libxv1 \
-      mesa-utils \
+#      mesa-utils \
+#      mesa-utils-extra \
       gtk2-engines-pixbuf \
-      libsmbclient-dev \
-      mesa-utils-extra
+      libsmbclient-dev
+
 #RUN  sed -i 's%<property name="ThemeName" type="string" value="Xfce"/>%<property name="ThemeName" type="string" value="Kokodi"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
 RUN echo "deb [trusted=yes] http://archive.ubuntu.com/ubuntu/ bionic main universe" >> /etc/apt/sources.list && \
@@ -87,10 +86,10 @@ RUN apt-get update && apt-get -y install git \
       xdotool \
       tango-icon-theme \
       cron \
-#      plank \
 #      pulseaudio \
 #      pulseaudio-dlna \
 #      pavucontrol \
+#      libpulse0 \
    && rm -rf /var/lib/apt/lists/*
 
 #optional apps, comment if you don't need
@@ -99,9 +98,10 @@ RUN apt-get update && apt-get -y install putty \
 #                                         gpicview \
 #                                         onboard \
 #                                         firefox \
-#                                          krusader \
-#                                          filezilla \
-#                                          doublecmd-qt \
+#                                         krusader \
+#                                         filezilla \
+#                                         doublecmd-qt \
+#                                         plank \
 && rm -rf /var/lib/apt/lists/*
 
 
@@ -129,7 +129,7 @@ WORKDIR /root/
 HEALTHCHECK --interval=1m --timeout=10s CMD curl --fail http://127.0.0.1:8080/vnc.html
 
 # Cron job
-RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 && apt upgrade -y && sleep 10 && apt autoclean >> /tmp/cron.log 2>&1") | crontab
+RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 && script -c "apt upgrade -y" /tmp/cron.log  && sleep 10 && apt autoclean") | crontab
 
 #config files to temp location
 RUN mkdir /opt/.vnc

@@ -15,8 +15,9 @@ services:
       - $VNCPORT:5900   
       - $HTTPPORT:8080  
     volumes:
-      - ./data:/home/$USER_NAME   #make local foldar "data" next your docker-compose file
-#      - ./data/root:/root       #make a local folder  "data/root"
+      - ./data:/home/$USER_NAME   #comment if you run as root, make local foldar "data" next your docker-compose file
+      - $LOCAL_PATH:/home/$USER_NAME/share #comment if you run as root # add a server share drive to your home
+#      - ./data/root:/root       # uncomment if you run as root, make a local folder  "data/root"
       - type: tmpfs
         target: /dev/shm
         tmpfs:
