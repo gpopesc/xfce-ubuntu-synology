@@ -122,7 +122,7 @@ RUN echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbun
 #RUN apt-get install -y /tmp/*.deb
 #RUN rm -f /tmp/*.deb
 
-EXPOSE 5900 8080
+EXPOSE 5900 80
 
 WORKDIR /root/
 
