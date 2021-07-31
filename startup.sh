@@ -18,6 +18,7 @@ fi
 mkdir /tmp/.ICE-unix && chmod 1777 /tmp/.ICE-unix
 echo root:${VNCPASS} | sudo chpasswd
 #chmod 777 /usr/share/plank/themes/Default/dock.theme
+cp /tmp/config/index.html /opt/noVNC/index.html
 
 if [ -n "${USER_NAME}" ]
  then
@@ -28,21 +29,21 @@ if [ -n "${USER_NAME}" ]
   export HOME=/home/${USER_NAME}
   echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S mkdir -p /home/${USER_NAME}/share
   echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S mkdir -p /home/${USER_NAME}/.config/xfce4/xfconf/xfce-perchannel-xml
-  echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S cp /tmp/*.xml /home/${USER_NAME}/.config/xfce4/xfconf/xfce-perchannel-xml/
-  cp /tmp/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 777 /home/${USER_NAME}/capslock_toggle.sh
+  echo ${USER_PASSWORD} | sudo -u ${USER_NAME} -S cp /tmp/config/*.xml /home/${USER_NAME}/.config/xfce4/xfconf/xfce-perchannel-xml/
+  cp /tmp/config/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 777 /home/${USER_NAME}/capslock_toggle.sh
   echo "cd /home/${USER_NAME}" >> ~/.bashrc
-  sudo -u ${USER_NAME} startxfce4 & \
+  sudo -u ${USER_NAME} startxfce4
   #echo ${USER_PASSWORD} | sudo -u ${USER_NAME} xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
   echo "===========> script finnished <============"
  else
   echo "Running as root"
   mkdir -p /root/share
   mkdir -p /root/.config/xfce4/xfconf/xfce-perchannel-xml
-  cp /tmp/*.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
-  cp /tmp/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 700 /home/${USER_NAME}/capslock_toggle.sh
-  startxfce4 & \
+  cp /tmp/config/*.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
+  cp /tmp/config/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 700 /home/${USER_NAME}/capslock_toggle.sh
+  startxfce4
   #xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
   echo "===========> script finnished <============"
 fi
-rm -f /tmp/*.xml
+#rm -rf /tmp/config
 echo "===========> Done <============"

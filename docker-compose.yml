@@ -1,9 +1,9 @@
-version: "3"
+version: "2.7"
 services:
   syno-ubuntu:
-  image: gpopesc/xfce-ubuntu-synology
+#  image: gpopesc/xfce-ubuntu-synology
     container_name: syno-ubuntu
-#    build: .
+    build: .
     environment:
       - VNCPASS=$VNC             #modify .env file 
       - DISPLAY_WIDTH=$WIDTH     #modify .env file 
@@ -13,7 +13,7 @@ services:
       - USER_PASSWORD=$USER_PASS  #modify .env file
     ports:
       - $VNCPORT:5900   
-      - $HTTPPORT:8080  
+      - $HTTPPORT:8000
     volumes:
       - ./data:/home/$USER_NAME   #comment if you run as root, make local foldar "data" next your docker-compose file
       - $LOCAL_PATH:/home/$USER_NAME/share #comment if you run as root # add a server share drive to your home

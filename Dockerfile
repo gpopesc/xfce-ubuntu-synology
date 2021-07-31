@@ -75,7 +75,7 @@ RUN apt-get update && apt-get -y install git \
       wget \
       curl \
       net-tools \
-#      gnupg2 \
+      gnupg2 \
       python3 \
       x11vnc \
       xvfb \
@@ -88,8 +88,8 @@ RUN apt-get update && apt-get -y install git \
       cron \
 #      pulseaudio \
 #      pulseaudio-dlna \
-#      pavucontrol \
-#      libpulse0 \
+      pavucontrol \
+      libpulse0 \
    && rm -rf /var/lib/apt/lists/*
 
 #optional apps, comment if you don't need
@@ -122,19 +122,19 @@ RUN echo 'deb http://download.opensuse.org/repositories/home:/stevenpusser/xUbun
 #RUN apt-get install -y /tmp/*.deb
 #RUN rm -f /tmp/*.deb
 
-EXPOSE 5900 80
+EXPOSE 5900 8000
 
 WORKDIR /root/
 
-HEALTHCHECK --interval=1m --timeout=10s CMD curl --fail http://127.0.0.1:8080/vnc.html
+HEALTHCHECK --interval=1m --timeout=10s CMD curl --fail http://127.0.0.1:8000/vnc.html
 
 # Cron job
 RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 && script -c "apt upgrade -y" /tmp/cron.log  && sleep 10 && apt autoclean") | crontab
 
 #config files to temp location
 RUN mkdir /opt/.vnc
-COPY ./config/*.xml startup.sh ./config/capslock_toggle.sh /tmp/
-COPY ./config/index.html /opt/noVNC/index.html
+COPY ./config /tmp/
+COPY startup.sh /
+#COPY ./config/index.html /opt/noVNC/index.html
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-RUN ["chmod", "+x", "/tmp/capslock_toggle.sh"]
 CMD ["/usr/bin/supervisord"]
