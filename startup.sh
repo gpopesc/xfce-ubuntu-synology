@@ -1,6 +1,5 @@
 #!/bin/bash
-LOG_LOCATION=/tmp/
-exec >> $LOG_LOCATION/mylogfile.log 2>&1
+exec >> tmp/mylogfile.log 2>&1
 
 echo 'deb http://download.opensuse.org/repositories/home:/Alexx2000/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/home:Alexx2000.list
 curl -fsSL https://download.opensuse.org/repositories/home:Alexx2000/Debian_10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/home_Alexx2000.gpg > /dev/null
