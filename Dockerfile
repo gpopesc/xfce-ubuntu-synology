@@ -61,8 +61,9 @@ RUN apt-get update && apt-mark hold iptables && \
       libxv1 \
 #      mesa-utils \
 #      mesa-utils-extra \
-      gtk2-engines-pixbuf \
 #      libsmbclient-dev
+      gtk2-engines-pixbuf
+
 
 #RUN  sed -i 's%<property name="ThemeName" type="string" value="Xfce"/>%<property name="ThemeName" type="string" value="Kokodi"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
