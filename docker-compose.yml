@@ -1,9 +1,9 @@
 version: "2.7"
 services:
   syno-ubuntu:
-#  image: gpopesc/xfce-ubuntu-synology
+    image: gpopesc/xfce-ubuntu-synology
     container_name: syno-ubuntu
-    build: .
+#    build: .
     environment:
       - VNCPASS=$VNC             #modify .env file 
       - DISPLAY_WIDTH=$WIDTH     #modify .env file 

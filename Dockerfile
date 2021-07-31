@@ -62,7 +62,7 @@ RUN apt-get update && apt-mark hold iptables && \
 #      mesa-utils \
 #      mesa-utils-extra \
       gtk2-engines-pixbuf \
-      libsmbclient-dev
+#      libsmbclient-dev
 
 #RUN  sed -i 's%<property name="ThemeName" type="string" value="Xfce"/>%<property name="ThemeName" type="string" value="Kokodi"/>%' /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 
@@ -86,7 +86,7 @@ RUN apt-get update && apt-get -y install git \
       xdotool \
       tango-icon-theme \
       cron \
-#      pulseaudio \
+      pulseaudio \
 #      pulseaudio-dlna \
       pavucontrol \
       libpulse0 \
@@ -94,6 +94,7 @@ RUN apt-get update && apt-get -y install git \
 
 #optional apps, comment if you don't need
 RUN apt-get update && apt-get -y install putty \
+                                          ristretto \
 #                                         xarchiver \
 #                                         gpicview \
 #                                         onboard \
@@ -133,7 +134,7 @@ RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 &
 
 #config files to temp location
 RUN mkdir /opt/.vnc
-COPY ./config /tmp/
+COPY ./config/* /tmp/config/
 COPY startup.sh /
 #COPY ./config/index.html /opt/noVNC/index.html
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
