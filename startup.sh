@@ -45,5 +45,5 @@ if [ -n "${USER_NAME}" ]
   #xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
   echo "===========> script finnished <============"
 fi
-#rm -rf /tmp/config
+# rm -rf /tmp/config
 echo "===========> Done <============"
