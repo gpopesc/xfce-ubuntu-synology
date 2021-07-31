@@ -41,7 +41,7 @@ if [ -n "${USER_NAME}" ]
   mkdir -p /root/.config/xfce4/xfconf/xfce-perchannel-xml
   cp /tmp/config/*.xml /root/.config/xfce4/xfconf/xfce-perchannel-xml/
   cp /tmp/config/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 700 /home/${USER_NAME}/capslock_toggle.sh
-  startxfce4
+  startxfce4 &
   #xfconf-query --channel thunar --property /misc-exec-shell-scripts-by-default --create --type bool --set true && \
   echo "===========> script finnished <============"
 fi
