@@ -3,8 +3,7 @@ name: ci
 on:
   push:
     branches:
-      - 'master'
-      - 'dev-branch'
+      - 'main'
 
 jobs:
   docker:
@@ -28,4 +27,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: gpopesc/xfce-ubuntu-synology:latest
+          tags: gpopesc/xfce-ubuntu-xs:latest
