@@ -12,7 +12,7 @@ There is a full docker image with all apps preinstalled here:
 It has Chrome, Firefox, Palemoon, Putty, Image viewer, Mousepad text editor, Xarchiver and many plugins from XFCE desktop
 
 Modify the password and the screen resolution in docker-compose. The default password is admin.
-Map your ports as you wish. Default port for vnc connection is 5905 and for http port is 8087.
+Map your ports as you wish. Default port for vnc connection is 5902 and for http port is 8088.
 SHM added in docker compose or CLI in order to avoid errors on Firefox when running.
 The image was tested on Synology DS218+, linux and windows .
 
@@ -64,7 +64,7 @@ services:
          size: 4000000000 # ~4gb
     restart: on-failure
 ```
-Save .env.sample.txt from here(https://github.com/gpopesc/xfce-ubuntu-synology/blob/main/.env.sample.txt) and modify your variables then rename it to .env, next your docker-compose.yml file
+Save .env.sample.txt from here(https://github.com/gpopesc/xfce-ubuntu-synology/blob/main/.env.sample.txt), modify your variables  and then rename it to .env  , next your docker-compose.yml file.
 Create a local folder "data", then "docker-compose up -d" from your ssh command prompt
 
 
@@ -88,7 +88,7 @@ Uncomment the corespondend lines if you want to install them.
 From your SSH client copy-paste and run following command (all rows, one time):
 
 ```
-docker run -p 8088:8080 -p 5902:5900\
+docker run -p 8088:8000 -p 5902:5900\
  -e VNCPASS=admin\
  -e DISPLAY_WIDTH=1200\
  -e DISPLAY_HEIGHT=720\

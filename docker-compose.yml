@@ -13,8 +13,6 @@ services:
       - GID=$GID
       - USER_NAME=$USER_NAME      #comment or delete if you want run as root
       - USER_PASSWORD=$USER_PASS  #comment or delete if you want run as root
-    labels:
-      - monocker.enable=true
     ports:
       - $VNCPORT:5900   
       - $HTTPPORT:8000
