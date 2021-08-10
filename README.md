@@ -79,6 +79,7 @@ Create a local folder "data", then "docker-compose up -d" from your ssh command 
 
 
 Dockerfile has a lot optional apps, which are not installed by default.
+Comment "image:" and uncommnet "build:" in docker-compose.yml
 Uncomment the corespondend lines if you want to install them.
 
 
@@ -96,7 +97,7 @@ docker run -p 8088:8080 -p 5902:5900\
  -e GID=100\
  -e USER_NAME=your_user\
  -e USER_PASSWORD=youruser_pass\
- -v /volume1/docker/syno-ubuntu/data:/home \
+ -v /volume1/docker/syno-ubuntu/data:/home\
  --shm-size 4g\
  --name syno-ubuntu\
  --restart on-failure\
