@@ -138,7 +138,7 @@ WORKDIR /root/
 HEALTHCHECK --interval=1m --timeout=10s CMD curl --fail http://127.0.0.1:8000/vnc.html
 
 # Cron job
-RUN touch /tmp/cron.log && (crontab -l; echo "0 * * * * apt update && sleep 10 && script -c "apt upgrade -y" /tmp/cron.log  && sleep 10 && apt autoclean") | crontab
+RUN touch /tmp/cron.log && (crontab -l; echo "0 5 * * * apt update && sleep 10 && script -c "apt upgrade -y" /tmp/cron.log  && sleep 10 && apt autoclean") | crontab
 
 #config files to temp location
 RUN mkdir /opt/.vnc && mkdir /tmp/config

@@ -33,6 +33,7 @@
         <value type="int" value="13"/>
         <value type="int" value="14"/>
       </property>
+      <property name="autohide-behavior" type="uint" value="1"/>
     </property>
   </property>
   <property name="plugins" type="empty">
