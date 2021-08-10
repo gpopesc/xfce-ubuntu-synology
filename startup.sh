@@ -32,8 +32,7 @@ if [ -n "${USER_NAME}" ]
   cp /tmp/config/capslock_toggle.sh /home/${USER_NAME}/capslock_toggle.sh && chmod 777 /home/${USER_NAME}/capslock_toggle.sh
   sed -i "s|unix:/run/user/U_ID/pulse/native|unix:/run/user/$UID/pulse/native|" /tmp/config/pulse-client.conf && \
   cp -v /tmp/config/pulse-client.conf /etc/pulse/client.conf && \
-  echo "cd /home/${USER_NAME}" >> ~/.bashrc
-  if [ -e "~/.bashrc" ]
+  if [ -e "/home/${USER_NAME}/.bashrc" ]
     then
   echo ".bashrc exist --> skipping"
     else
