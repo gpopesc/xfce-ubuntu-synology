@@ -1,7 +1,7 @@
 version: "3"
 services:
   dev-ubu-host:
-    image: gpopesc/xfce-ubuntu-xs
+    image: gpopesc/xfce-ubuntu-xl
     container_name: xfce-ubuntu
 #    build: .
     environment:
