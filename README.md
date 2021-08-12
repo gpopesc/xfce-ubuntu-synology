@@ -8,7 +8,7 @@ it needs about 350-450Mb RAM when running (more with firefox or chrome).
 It has built in vnc server and noVNC for web access.
 
 There is a minimal docker image here: 
-https://github.com/gpopesc/xfce-ubuntu-synology
+https://hub.docker.com/repository/docker/gpopesc/xfce-ubuntu-xs
 
 It has Chrome, Firefox, Palemoon, Putty, Image viewer, Mousepad text editor, Xarchiver and many plugins from XFCE desktop
 
