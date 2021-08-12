@@ -41,24 +41,24 @@ RUN apt-get update && apt-mark hold iptables && \
       xfce4-terminal && \
     apt-get install -y --no-install-recommends \
       xfwm4 \
-#      xfce4-battery-plugin \
-#      xfce4-clipman-plugin \
-#      xfce4-cpufreq-plugin \
-#      xfce4-cpugraph-plugin \
-#      xfce4-diskperf-plugin \
+      xfce4-battery-plugin \
+      xfce4-clipman-plugin \
+      xfce4-cpufreq-plugin \
+      xfce4-cpugraph-plugin \
+      xfce4-diskperf-plugin \
       xfce4-datetime-plugin \
-#      xfce4-fsguard-plugin \
-#      xfce4-genmon-plugin \
+      xfce4-fsguard-plugin \
+      xfce4-genmon-plugin \
       xfce4-indicator-plugin \
-#      xfce4-netload-plugin \
-#      xfce4-notes-plugin \
-#      xfce4-places-plugin \
-#      xfce4-sensors-plugin \
-#      xfce4-smartbookmark-plugin \
-#      xfce4-systemload-plugin \
-#      xfce4-timer-plugin \
+      xfce4-netload-plugin \
+      xfce4-notes-plugin \
+      xfce4-places-plugin \
+      xfce4-sensors-plugin \
+      xfce4-smartbookmark-plugin \
+      xfce4-systemload-plugin \
+      xfce4-timer-plugin \
       xfce4-verve-plugin \
-#      xfce4-weather-plugin \
+      xfce4-weather-plugin \
       xfce4-whiskermenu-plugin && \
       apt-get install -y --no-install-recommends \
       libxv1 \
@@ -92,7 +92,7 @@ RUN apt-get update && apt-get -y install git \
 #      make \
 #      pulseaudio-dlna \
       pulseaudio-utils \
- #     pavucontrol \
+      pavucontrol \
  #     pulseaudio \
       libpulse0 \
       libasound2-plugins \
@@ -101,12 +101,12 @@ RUN apt-get update && apt-get -y install git \
 #optional apps, comment if you don't need
 RUN apt-get update && apt-get -y install putty \
                                          xarchiver \
-#                                         gpicview \
+                                         gpicview \
 #                                         onboard \
-#                                         firefox \
+                                         firefox \
 #                                         krusader \
 #                                         filezilla \
-#                                         doublecmd-qt \
+                                         doublecmd-qt \
 #                                         plank \
 && rm -rf /var/lib/apt/lists/*
 
