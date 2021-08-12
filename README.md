@@ -8,6 +8,7 @@ It use about 500Mb disk size and it needs about 350-450Mb RAM when running (more
 It has built in vnc server and noVNC for web access.
 
 There is a full docker image with all apps preinstalled here: 
+https://hub.docker.com/repository/docker/gpopesc/xfce-ubuntu-xl
 
 It has Chrome, Firefox, Palemoon, Putty, Image viewer, Mousepad text editor, Xarchiver and many plugins from XFCE desktop
 
