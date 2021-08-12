@@ -4,13 +4,13 @@ GitHub: https://github.com/gpopesc/xfce-ubuntu-synology
 
 # Minimal installation in docker of a ubuntu container with Xfce desktop with sound (only in linux)
 
-It use about 500Mb disk size and it needs about 350-450Mb RAM when running (more with firefox or chrome).
+It use about1,2Gb disk size and it needs about 350-450Mb RAM when running (more with firefox or chrome).
 It has built in vnc server and noVNC for web access.
 
 There is a full docker image with all apps preinstalled here: 
-https://hub.docker.com/repository/docker/gpopesc/xfce-ubuntu-xl
+https://hub.docker.com/r/gpopesc/xfce-ubuntu-xl 
 
-It has Chrome, Firefox, Palemoon, Putty, Image viewer, Mousepad text editor, Xarchiver and many plugins from XFCE desktop
+It has Chrome,  Palemoon low resources browser, Putty, Image viewer, Mousepad text editor, Xarchiver and many plugins from XFCE desktop
 
 Modify the password and the screen resolution in docker-compose. The default password is admin.
 Map your ports as you wish. Default port for vnc connection is 5902 and for http port is 8088.
